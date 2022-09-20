@@ -46,46 +46,77 @@ nav {
   border-radius: 5px 5px 0 0;
 }
 
-.auth-container form .form-controls{
-    width: 100%;
-    padding: 10px 20px;
-    display: flex;
-    flex-direction: column;
+.auth-container form .form-controls {
+  width: 100%;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: column;
 }
 
-.form-controls label{
-    color: gray;
+.form-controls label {
+  color: gray;
 }
 
-.form-controls input{
-    padding: 5px;
+.form-controls input {
+  padding: 5px;
 }
 
-.form-controls input:focus{
-    outline: 0;
+.form-controls input:focus {
+  outline: 0;
 }
 
-.auth-container form input[type="submit"]{
-    cursor: pointer;
-    padding: 10px 30px;
-    margin: 10px;
-    border: 0;
-    background-color: tomato;
-    color: white;
-    border-radius: 5px;
+.auth-container form input[type="submit"] {
+  cursor: pointer;
+  padding: 10px 30px;
+  margin: 10px;
+  border: 0;
+  background-color: tomato;
+  color: white;
+  border-radius: 5px;
 }
 
-.auth-container form input[type="submit"]:hover{
-background-color: rgb(255, 86, 56);
+.auth-container form input[type="submit"]:hover {
+  background-color: rgb(255, 86, 56);
 }
 
-.auth-container form input[type="submit"]:active{
-    transform: scale(0.95);
+.auth-container form input[type="submit"]:active {
+  transform: scale(0.95);
 }
 
-.auth-container form p{
-    padding: 10px;
-    font-size: 14px;
+.auth-container form p {
+  padding: 10px;
+  font-size: 14px;
 }
 
+.menu-tab {
+  list-style-type: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
 
+.menu-tab li {
+  cursor: pointer;
+  background-color: tomato;
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  color: white;
+  border-bottom: 2px solid #dd2707;
+}
+
+/* selected class add kreinge hm click pe ismein  */
+.menu-tab li.selected {
+  background-color: #dd2707;
+}
+
+/* isse border left krrhe hain lekin select nth-child se krrhe hain  */
+.menu-tab li:nth-child(2) {
+  border-left: 1px solid #dd2707;
+  border-right: 1px solid #dd2707;
+}
+
+.menu-tab li:hover {
+  background-color: #dd2707;
+}
