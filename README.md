@@ -138,3 +138,18 @@
 
 - Applied the  redux on the menuTab and it is working fine with actions and state.
 - Created the pages here for the menuTab that what ever is selected on the menuTab render that particular page on the screen.
+
+- post request mein dispatch ka kia kaam, dispatch ka kaam aega get request se jsse hm state change krdeinge apne pass.
+
+- dispatch mein type aur payload ata hai jsse state change hoti hai hmare pass.
+  dispatch(
+  {
+    type: "name",          
+    paylaod: data
+  }
+)
+
+- jo bhi apis hm fetch kreinge uski types create krrhe hain take dispatch aur action mein same use krein.
+- trim() - method removes whitespaces from the string.
+
+- Signup && login all input field are handled using states and validations are applied all the way!
