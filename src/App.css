@@ -120,3 +120,48 @@ nav {
 .menu-tab li:hover {
   background-color: #dd2707;
 }
+
+main {
+  width: 500px;
+  max-width: 100%;
+  padding: 10px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.profile h1 {
+  padding: 10px;
+}
+
+.profile ul {
+  list-style-type: none;
+  width: 100%;
+}
+
+.profile ul li {
+  padding: 20px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  background-color: whitesmoke;
+}
+
+.profile ul li:nth-child(odd){
+  background-color: rgb(235, 235, 235);
+}
+
+.profile ul li span{
+  flex: 1;
+}
