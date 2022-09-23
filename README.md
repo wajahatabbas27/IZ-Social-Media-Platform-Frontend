@@ -94,7 +94,7 @@
 
 ### User Actions
 
-- Component -> Action -> Reducer -> State will be Changed                 -- this is the flow! 
+- Component -> Action -> Reducer -> State will be Changed -- this is the flow!
 
 - **signUp:** signup ki api post request hai aur return hmein kregi yh jwt token, jsko hm save krleinge apne pass localStorage mein, yh kaam hm actions mein kreinge signup ke jb hmare pass signup call hoga.
 
@@ -113,8 +113,6 @@
 
   - dispatch response ko kreinge jo api se aega take usse hm apni state ko update krein.
 
-               
-
 ## Extra Information
 
 - padding : 10px(top/down) 30px(left/right)
@@ -132,11 +130,11 @@
 
 - Created home component as well wit menuTab over here!
 
-- flex:1;       --- isse sbko same space distribute krdega total width ki.
+- flex:1; --- isse sbko same space distribute krdega total width ki.
 
 - We must define all the initialStates in the user initial state. Will be updating and manipulating the states using the action.type and updating the logic for the state.
 
-- Applied the  redux on the menuTab and it is working fine with actions and state.
+- Applied the redux on the menuTab and it is working fine with actions and state.
 - Created the pages here for the menuTab that what ever is selected on the menuTab render that particular page on the screen.
 
 - post request mein dispatch ka kia kaam, dispatch ka kaam aega get request se jsse hm state change krdeinge apne pass.
@@ -144,12 +142,56 @@
 - dispatch mein type aur payload ata hai jsse state change hoti hai hmare pass.
   dispatch(
   {
-    type: "name",          
-    paylaod: data
+  type: "name",  
+   paylaod: data
   }
-)
+  )
 
 - jo bhi apis hm fetch kreinge uski types create krrhe hain take dispatch aur action mein same use krein.
 - trim() - method removes whitespaces from the string.
 
 - Signup && login all input field are handled using states and validations are applied all the way!
+
+- li>span\*2 -- Isse listitem ke andar 2 span elements kholdega shortcut hai yh.
+
+- margin: 0 auto; -- top/down - 0 , left/right - auto -- it means that the margin from the left is auto and from the right is auto as well therefore things will end up in the center as left is auto and right is auto as well!
+
+- .profile ul li:nth-child(even/odd){ -- nth child means the child on the even index will become red.
+  background-color: red;
+  }
+
+- current post ke liye hai ke kisi post ko update krna chhate hain hm to usko hm current mein add krdeinge aur phr usko update krdeinge hm.
+
+- const res = await axios({
+  method: "POST",
+  url: `${BACKEND_URL}/api/users`,
+  headers: {
+  "Content-Type": "application/json",
+  },
+  data: userData,
+  }); -- to create a post request using axios
+
+- Js action mein hm dispatch use kreinge wo function alag baneinge
+  const dataExample = (userId) =>async (dispatch) =>{}
+
+- When we will update the post, we will going to give the data inside the postbody.
+
+- We will going to use set Current post to be updated so we create a action to makesure and to figure out the post.
+
+- dispatch keyword is not necessary to call the reducer, if there is no data in the function so it is not needed all the way there.
+
+- Update logic to update the reducer state(userPosts) -- userPosts: state.filter((post) =>
+  post.\_id === action.payload.id ? action.payload : post
+  ),
+
+- Delete logic to update the reducer state(userPosts) without that particular posts that was deleted -- state.filter((post)=> post.\_id !== action.payload.\_id)
+
+
+
+
+
+
+
+
+
+
