@@ -1,7 +1,12 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { signUp } from "../../actions/userDataActions";
 
-const Signup = () => {
+const Signup = ({ auth, signUp }) => {
+  // Navigate is used to route and it is provided by the router-dom
+  const navigate = useNavigate();
+
   //====================================================================================================================================================
   // state for the input is the object with the input field name inside the object
   //====================================================================================================================================================
@@ -12,11 +17,20 @@ const Signup = () => {
     password2: "",
   });
 
+  // Applying validation and navigating to the home if user has token 
+  useEffect(() => {
+    if (auth) {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [auth]);
+
   //====================================================================================================================================================
   // functon to handle onChange in the inputfield
   // The logic here is set the user to have the previous user data with the spread operator, and get the name from the state that is changed and set the targeted value to it all the way
   //====================================================================================================================================================
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
+
 
   //====================================================================================================================================================
   // functon to handle onsubmit of the form
@@ -41,9 +55,17 @@ const Signup = () => {
       alert("Some Credentials are Missing in the Input! 👈");
     }
 
+    if(name.length < 3) return alert("Name must be greater than 5 characters")
+
     if (password !== password2) {
       alert("Passwords are not Matching");
     }
+
+    if (password.length < 6){
+      alert("password length must be greater than 5")
+    }
+      // Calling signup action and sending user as props
+      await signUp(user);
 
     // set user to empty string again
     setUser({
@@ -111,4 +133,8 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+const mapStateToProps = (state) => ({
+  auth: state.user.auth,
+});
+
+export default connect(mapStateToProps, { signUp })(Signup);

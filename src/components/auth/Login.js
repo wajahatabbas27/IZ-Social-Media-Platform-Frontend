@@ -1,11 +1,21 @@
-import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { NavLink, useNavigate } from "react-router-dom";
+import { logIn } from "../../actions/userDataActions";
 
-const Login = () => {
+const Login = ({ auth, logIn }) => {
+  const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    if (auth) {
+      navigate("/");
+    }
+    // eslint-disable-next-line
+  }, [auth]);
 
   // onChange of field
   const onChange = (e) => setUser({ ...user, [e.target.name]: e.target.value });
@@ -13,14 +23,19 @@ const Login = () => {
   // onSubmit
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(user);
 
     const { email, password } = user;
 
     // Validation if empty
-    if (!email || !password) {
-      alert("Enter Both Input Fields");
+    if (email.trim() === "" || password.trim() === "") {
+      alert("Email and password both are required!");
     }
+
+    // calling the action
+    await logIn({
+      email,
+      password,
+    });
 
     // Again setting the values to empty
     setUser({
@@ -57,11 +72,16 @@ const Login = () => {
         </div>
         <input type='submit' value='Login' />
         <p>
-          Haven't registered yet? <NavLink to="/signup">Register yourself</NavLink>
+          Haven't registered yet?{" "}
+          <NavLink to='/signup'>Register yourself</NavLink>
         </p>
       </form>
     </div>
   );
 };
 
-export default Login;
+const mapStateToProps = (state) => ({
+  auth: state.user.auth,
+});
+
+export default connect(mapStateToProps, { logIn })(Login);

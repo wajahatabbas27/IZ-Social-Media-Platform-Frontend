@@ -4,8 +4,10 @@ import {
   GET_ALL_POSTS,
   GET_USER_DATA,
   GET_USER_POSTS,
+  LOGIN_USER_AND_GET_TOKEN,
   SET_CURRENT,
   SET_LOADING,
+  SIGNUP_USER_AND_GET_TOKEN,
   UPDATE_POST,
 } from "../actions/types";
 
@@ -15,10 +17,21 @@ const initialState = {
   allPosts: [],
   current: null,
   loading: false,
+  auth: false,
 };
 
 const userDataReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SIGNUP_USER_AND_GET_TOKEN:
+      return {
+        ...state,
+        auth: action.payload,
+      };
+    case LOGIN_USER_AND_GET_TOKEN:
+      return {
+        ...state,
+        auth: action.payload,
+      };
     case GET_USER_DATA:
       return {
         ...state,

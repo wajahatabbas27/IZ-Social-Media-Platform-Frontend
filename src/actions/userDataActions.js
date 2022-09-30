@@ -1,38 +1,43 @@
 //========================================================================================================
 // All the actions that will be triggered when we need to update the state in the reducer
 //========================================================================================================
-
 import {
   ADD_POSTS,
   DELETE_POST,
   GET_ALL_POSTS,
   GET_USER_DATA,
   GET_USER_POSTS,
+  LOGIN_USER_AND_GET_TOKEN,
   SET_CURRENT,
   SET_LOADING,
+  SIGNUP_USER_AND_GET_TOKEN,
   UPDATE_POST,
 } from "./types";
 import axios from "axios";
 
-const BACKEND_URL = "https://iz-social-app-backend.herokuapp.com/";
+// endpoint where backend is deployed!
+const backendURL = "http://iz-social-app-backend.herokuapp.com";
 
 // Action to SignUp and Get Token
-export const signUp = async (userData) => {
+export const signUp = (userData) => async (dispatch) => {
   setLoading(true);
   try {
     const res = await axios({
       method: "POST",
-      url: `${BACKEND_URL}/api/users`,
+      url: `${backendURL}/api/users`,
       headers: {
         "Content-Type": "application/json",
       },
       data: userData,
     });
-
     const token = await res.data;
-
+    console.log("Token ==>> ", token);
     // Storing the token to the localStorage
-    localStorage.setItem("iz-auth-token", token);
+    localStorage.setItem("iz-auth-token", token.token);
+    dispatch({
+      type: SIGNUP_USER_AND_GET_TOKEN,
+      payload: token.token ? true : false,
+    });
   } catch (err) {
     console.log("error: ", err);
   }
@@ -40,12 +45,12 @@ export const signUp = async (userData) => {
 };
 
 // Action to login and Get token
-export const logIn = async (loginData) => {
+export const logIn = (loginData) => async (dispatch) => {
   setLoading(true);
   try {
     const res = await axios({
       method: "POST",
-      url: `${BACKEND_URL}/api/auth`,
+      url: `${backendURL}/api/auth`,
       headers: {
         "Content-Type": "application/json",
       },
@@ -55,7 +60,12 @@ export const logIn = async (loginData) => {
     const token = await res.data;
 
     // Storing the token to the localStorage
-    localStorage.setItem("iz-auth-token", token);
+    localStorage.setItem("iz-auth-token", token.token);
+
+    dispatch({
+      type: LOGIN_USER_AND_GET_TOKEN,
+      payload: token.token ? true : false,
+    });
   } catch (err) {
     console.log("error", err);
   }
@@ -68,7 +78,7 @@ export const getUser = () => async (dispatch) => {
   try {
     const res = await axios({
       method: "GET",
-      url: `${BACKEND_URL}/api/auth`,
+      url: `${backendURL}/api/auth`,
       headers: {
         "Content-Type": "application/json",
         "iz-auth-token": `${localStorage.getItem("iz-auth-token")}`,
@@ -94,7 +104,7 @@ export const getUserPosts = (userId) => async (dispatch) => {
   try {
     const res = await axios({
       method: "GET",
-      url: `${BACKEND_URL}/api/posts/${userId}`,
+      url: `${backendURL}/api/posts/${userId}`,
       headers: {
         "Content-Type": "application/json",
         "iz-auth-token": `${localStorage.getItem("iz-auth-token")}`,
@@ -120,7 +130,7 @@ export const getAllPosts = () => async (dispatch) => {
   try {
     const res = await axios({
       method: "GET",
-      url: `${BACKEND_URL}/api/posts`,
+      url: `${backendURL}/api/posts`,
       headers: {
         "Content-Type": "application/json",
         "iz-auth-token": `${localStorage.getItem("iz-auth-token")}`,
@@ -134,7 +144,7 @@ export const getAllPosts = () => async (dispatch) => {
       type: GET_ALL_POSTS,
       payload: allPosts,
     });
-  } catch (error) {
+  } catch (err) {
     console.log("error: ", err);
   }
   setLoading(false);
@@ -146,7 +156,7 @@ export const addPost = (postData) => async (dispatch) => {
   try {
     const res = await axios({
       method: "POST",
-      url: `${BACKEND_URL}/api/posts`,
+      url: `${backendURL}/api/posts`,
       headers: {
         "Content-Type": "application/json",
         "iz-auth-token": `${localStorage.getItem("iz-auth-token")}`,
@@ -171,7 +181,7 @@ export const updatePost = (updatePostData) => async (dispatch) => {
   try {
     const res = await axios({
       method: "PUT",
-      url: `${BACKEND_URL}/api/posts/${updatePostData.id}`,
+      url: `${backendURL}/api/posts/${updatePostData.id}`,
       data: {
         body: updatePostData.body,
       },
@@ -200,7 +210,7 @@ export const deletePost = (postId) => async (dispatch) => {
   try {
     await axios({
       method: "DELETE",
-      url: `${BACKEND_URL}/api/posts/${postId}`,
+      url: `${backendURL}/api/posts/${postId}`,
       headers: {
         "Content-Type": "application/json",
         "iz-auth-token": `${localStorage.getItem("iz-auth-token")}`,

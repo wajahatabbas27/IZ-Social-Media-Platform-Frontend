@@ -113,6 +113,12 @@
 
   - dispatch response ko kreinge jo api se aega take usse hm apni state ko update krein.
 
+## Public && Private Routing within the Application:
+
+- SignUp aur SignIn ka jo route hai use hmne public krna hai aur Home ka jo route hai use hmne private krna hai yhn pe!
+
+- Inspect Element mein Application mein hmare pass hai localStorage jo hm use kreinge save krne ke liye token ko!
+
 ## Extra Information
 
 - padding : 10px(top/down) 30px(left/right)
@@ -186,12 +192,21 @@
 
 - Delete logic to update the reducer state(userPosts) without that particular posts that was deleted -- state.filter((post)=> post.\_id !== action.payload.\_id)
 
+- .btn:active{
+  transform: scale(0.95)
+}         --- active means jb click kreinge hm 
 
+- !important se styling lazmi apply hogi jahan pe bhi hm krna chaheinge lazmi apply ho hmari styling wahan pe !important ka tag lgadeinge.
 
+- In other words, if you need side effects (requests to API, etc.) or you want to call two or more actions then we will call dispatch in the actions else it is not required as by default it returns synchronous data.
 
+-   grid-gap: 10px;   --  To give spaces within the grid
 
+- Current state ko bnane ka maksad hi yhi hai hmara ke select knsa kra wa hai hmne post update ke liye ya add ke liye kionke agr update ke liye kreinge koi post select to hmare pass current state mein aega wo null nhi hogi state hmare pass.
 
+- CORS -- cross origin resource sharing        
 
+- Js mein dispatch use hoga wo hoga action hmare pass, else wo aik normal function hoga hmare pass.
 
-
+- useNavigate hook use kreinge hm application mein route pe jane ke liye!
 
