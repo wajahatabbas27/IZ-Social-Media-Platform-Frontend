@@ -1,11 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
+import Spinner from '../components/layout/Spinner'
 
-const Profile = () => {
-  const user = {
-    name: "AZ",
-    email: "techaz@gmail.com",
-    date: "23-09-22",
-  };
+const Profile = ({ user, userLoading }) => {
+  if (userLoading) {
+    return <Spinner />;
+  }
 
   const { name, email, date } = user;
 
@@ -23,11 +23,16 @@ const Profile = () => {
         </li>
         <li>
           <span>Date:</span>
-          <span>{date}</span>
+          <span>{`${new Date(date)}`}</span>
         </li>
       </ul>
     </div>
   );
 };
 
-export default Profile;
+const mapStateToProps = (state) => ({
+  user: state.user.user,
+  userLoading: state.user.userLoading,
+});
+
+export default connect(mapStateToProps, null)(Profile);

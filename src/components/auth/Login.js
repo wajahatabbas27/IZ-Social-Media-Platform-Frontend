@@ -11,7 +11,7 @@ const Login = ({ auth, logIn }) => {
   });
 
   useEffect(() => {
-    if (auth) {
+    if (localStorage.getItem("iz-auth-token")) {
       navigate("/");
     }
     // eslint-disable-next-line

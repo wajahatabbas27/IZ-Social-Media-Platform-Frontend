@@ -1,33 +1,25 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import {
+  addPost,
+  updatePost,
+  deletePost,
+  setCurrent,
+} from "../actions/userDataActions";
 
-const Timeline = ({ current }) => {
+const Timeline = ({
+  current,
+  addPost,
+  updatePost,
+  deletePost,
+  setCurrent,
+  userPosts,
+}) => {
   const [body, setBody] = useState("");
-
-  const myPosts = [
-    {
-      _id: "0",
-      user: "0",
-      body: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Esse dicta illum obcaecati soluta voluptatibus. Reprehenderit cum, repellat tempore repudiandae amet soluta vitae velit esse consectetur, veniam, dolore nesciunt corrupti labore",
-      date: "25-09-21",
-    },
-    {
-      _id: "1",
-      user: "0",
-      body: "Lorem ipsum, dolor sit amet  cum, repellat tempore repudiandae amet soluta vitae velit esse consectetur, veniam, dolore nesciunt corrupti labore",
-      date: "25-09-21",
-    },
-    {
-      _id: "2",
-      user: "0",
-      body: " Reprehenderit cum, repellat tempore repudiandae amet soluta vitae velit esse consectetur, veniam, dolore nesciunt corrupti labore",
-      date: "25-09-21",
-    },
-  ];
 
   return (
     <div className='timeline'>
-      <form>
+      <form action="">
         <h2>{!current ? "Add " : "Update"} Your Post</h2>
         <div className='form-control'>
           <label htmlFor='body'>
@@ -43,26 +35,83 @@ const Timeline = ({ current }) => {
         </div>
         <div className='controls'>
           {!current ? (
-            <input type='submit' value='Add' className='btn add' />
+            <input
+              type='submit'
+              value='Add'
+              className='btn add'
+              onClick={(e) => {
+                e.preventDefault();
+                if (body === "") {
+                  return alert("Enter some text inside body");
+                }
+                // it must be inside curly braces
+                addPost({ body });
+                setBody("");
+              }}
+            />
           ) : (
             <>
-              <button className='btn update'>Update</button>
-              <button className='btn cancel'>Cancel</button>
+              <button
+                className='btn update'
+                onClick={() => {
+                  if (body === "") {
+                    alert("Enter some text inside body");
+                  }
+                  updatePost({
+                    id: current.id,
+                    body,
+                  });
+                  setBody("");
+                }}
+              >
+                Update
+              </button>
+              <button
+                className='btn cancel'
+                onClick={() => {
+                  setCurrent(null);
+                  setBody("");
+                }}
+              >
+                Cancel
+              </button>
             </>
           )}
         </div>
       </form>
 
       <h1>My Posts</h1>
-      {myPosts.length > 0 ? (
+      {userPosts && userPosts.length > 0 ? (
         <ul className='posts'>
-          {myPosts.map((post) => (
+          {userPosts.map((post) => (
             <li key={post._id}>
               <small>Add Date: {post.date}</small>
               <p>{post.body}</p>
               <div className='controls'>
-                <button className='btn update'>Update</button>
-                <button className='btn delete'>Delete</button>
+                <button
+                  className='btn update'
+                  onClick={() => {
+                    // update click ho to uper form mein lejae yh current se hmein
+                    setCurrent({
+                      id: post._id,
+                      body,
+                    });
+                    // body set krrhe hain post ki take form mein uper ki ae!
+                    setBody(post.body);
+                  }}
+                >
+                  Update
+                </button>
+                <button
+                  className='btn delete'
+                  onClick={() => {
+                    deletePost(post._id);
+                    setCurrent(null);
+                    setBody("");
+                  }}
+                >
+                  Delete
+                </button>
               </div>
             </li>
           ))}
@@ -76,6 +125,12 @@ const Timeline = ({ current }) => {
 
 const mapStateToProps = (state) => ({
   current: state.user.current,
+  userPosts: state.user.userPosts,
 });
 
-export default connect(mapStateToProps, null)(Timeline);
+export default connect(mapStateToProps, {
+  addPost,
+  updatePost,
+  deletePost,
+  setCurrent,
+})(Timeline);

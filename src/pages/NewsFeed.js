@@ -1,105 +1,13 @@
 import React from "react";
+import { connect } from "react-redux";
 
-const NewsFeed = () => {
-  const myId = "1";
-
-  const allPosts = [
-    {
-      _id: "0",
-      user: "0",
-      body: "Lorem ipsum dolor sit amet consectetur,  recusandae quo hic fuga necessitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "1",
-      user: "0",
-      body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis voluptatibus recusandae quo hic fuga necessitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "2",
-      user: "1",
-      body: "Lorem ipsum dolor sitssitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "3",
-      user: "0",
-      body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis voluptatibus recusandae quo hic fuga necessitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "4",
-      user: "1",
-      body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-      date: "25-9-22",
-    },
-    {
-      _id: "0",
-      user: "0",
-      body: "Lorem ipsum dolor sit amet consectetur,  recusandae quo hic fuga necessitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "1",
-      user: "0",
-      body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis voluptatibus recusandae quo hic fuga necessitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "2",
-      user: "1",
-      body: "Lorem ipsum dolor sitssitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "3",
-      user: "0",
-      body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis voluptatibus recusandae quo hic fuga necessitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "4",
-      user: "1",
-      body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-      date: "25-9-22",
-    },
-    {
-      _id: "0",
-      user: "0",
-      body: "Lorem ipsum dolor sit amet consectetur,  recusandae quo hic fuga necessitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "1",
-      user: "0",
-      body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis voluptatibus recusandae quo hic fuga necessitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "2",
-      user: "1",
-      body: "Lorem ipsum dolor sitssitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "3",
-      user: "0",
-      body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Perspiciatis voluptatibus recusandae quo hic fuga necessitatibus autem, exercitationem quasi dicta quisquam.",
-      date: "25-9-22",
-    },
-    {
-      _id: "4",
-      user: "1",
-      body: "Lorem ipsum dolor sit amet consectetur, adipisicing elit.",
-      date: "25-9-22",
-    },
-  ];
+const NewsFeed = ({ allPosts, user }) => {
+  const myId = user._id;
 
   return (
     <div className='newsfeed'>
       <h1>NewsFeed</h1>
-      {allPosts.length > 0 ? (
+      {allPosts && allPosts.length > 0 ? (
         <ul className='posts'>
           {allPosts.map((post, index) => (
             <li key={index} className={post.user === myId ? "my-post" : ""}>
@@ -116,4 +24,9 @@ const NewsFeed = () => {
   );
 };
 
-export default NewsFeed;
+const mapStateToProps = (state) => ({
+  allPosts: state.user.allPosts,
+  user: state.user.user,
+});
+
+export default connect(mapStateToProps, null)(NewsFeed);

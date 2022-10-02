@@ -210,3 +210,36 @@
 
 - useNavigate hook use kreinge hm application mein route pe jane ke liye!
 
+- login krle user hmara to hm getUser ki api call krlein take uska data show krana hoga hmein screen pe.
+- Apis call krke hm user ko show kra rhe hain yhn pe!
+- uske bd posts aur allposts bhi hm fetch kreinge take unko bhi hm fetch krlein yhn pe!
+
+- posts be timeline pe CRUD chaleinge hm userposts pe idhr hi hm.
+
+- agr state null hai to empty array zror return krega yh .
+
+- post hain bhi ya nhi wo hm check krleinge ampersant operator se : 
+    userPosts && ----- proceed krega yh ceck krega hai ya nhi.
+
+- localStorage.removeItem("iz-auth-token");   --  se local storage mein remove krdeta hai token ko!
+
+- err?.response?.data        --  isse error jo api se arha hoga wo dekhadega hmein, catch mein yh!
+
+- filter ki jaga map lgaeinge hm apne pass.
+
+- logout -- hm remove krdeinge token ko localStorage se take login ke credentials delete hojaein hmare pass, uske ilawa states ko hm apni delete krdeinge sari mtlb null krdeinge take reset hojaein!
+
+- Home component will not go directly to the pages profile , as we are fetching the data api so it must be a async request therefore here we will be needing the loading and there we are showing the Spinner component here. 
+
+
+- 1- getUser in profile page.
+- 2- getUserPosts in timeline and apply CRUD.
+- 3- getAllPosts in newsfeed.
+- 4- loadings add kreinge hm userDataLoadings / allPostsLoadings / userLoadings
+- 5- CRUD functionality -->> timeline 
+- 6- Logout button functionality.
+
+
+## Deployment on Heroku
+
+- 

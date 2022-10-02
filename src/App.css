@@ -298,3 +298,8 @@ input:focus {
 .my-post{
   background-color: rgb(180, 248, 180) !important;
 }
+
+.Spinner{
+  padding: 10px;
+  text-align: center;
+}

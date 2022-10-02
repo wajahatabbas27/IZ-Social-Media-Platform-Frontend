@@ -17,9 +17,10 @@ const Signup = ({ auth, signUp }) => {
     password2: "",
   });
 
-  // Applying validation and navigating to the home if user has token 
+  // Applying navigating to the home if user has token 
+  // iska mtlb yh hai jese hi auth change ho useEffect ko run krdo 
   useEffect(() => {
-    if (auth) {
+    if (localStorage.getItem("iz-auth-token")) {
       navigate("/");
     }
     // eslint-disable-next-line
