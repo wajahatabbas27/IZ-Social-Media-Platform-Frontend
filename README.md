@@ -242,4 +242,7 @@
 
 ## Deployment on Heroku
 
-- 
+- 1-connect github
+- 2-auto deploy enabling
+- 3-buildpack url for craete-react-app  :  https://github.com/mars/create-react-app-buildpack
+- 4-deploy
