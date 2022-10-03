@@ -20,7 +20,7 @@ import {
 import axios from "axios";
 
 // endpoint where backend is deployed!
-const backendURL = "http://iz-social-app-backend.herokuapp.com";
+const backendURL = "https://iz-social-app-backend.herokuapp.com";
 
 // Action to SignUp and Get Token
 export const signUp = (userData) => async (dispatch) => {
@@ -46,7 +46,7 @@ export const signUp = (userData) => async (dispatch) => {
       payload: token.token ? true : false,
     });
   } catch (err) {
-    console.log("error: ", err?.response?.data);
+    console.log("error: ", err);
   }
   dispatch({
     type: SET_AUTH_LOADING,
@@ -80,7 +80,7 @@ export const logIn = (loginData) => async (dispatch) => {
       payload: token.token ? true : false,
     });
   } catch (err) {
-    console.log("error: ", err?.response?.data);
+    console.log("error: ", err);
   }
   dispatch({
     type: SET_AUTH_LOADING,
@@ -112,7 +112,7 @@ export const getUser = () => async (dispatch) => {
       payload: user.user,
     });
   } catch (err) {
-    console.log("error: ", err?.response?.data);
+    console.log("error: ", err);
   }
   dispatch({
     type: SET_USER_LOADING,
@@ -144,7 +144,7 @@ export const getUserPosts = (userId) => async (dispatch) => {
       payload: userPosts.posts,
     });
   } catch (err) {
-    console.log("error: ", err?.response?.data);
+    console.log("error: ", err);
   }
   dispatch({
     type: SET_USER_POSTS_LOADING,
@@ -176,7 +176,7 @@ export const getAllPosts = () => async (dispatch) => {
       payload: allPosts.posts,
     });
   } catch (err) {
-    console.log("error: ", err?.response?.data);
+    console.log("error: ", err);
   }
   dispatch({
     type: SET_ALL_POSTS_LOADING,
@@ -208,7 +208,7 @@ export const addPost = (postData) => async (dispatch) => {
       payload: post.post,
     });
   } catch (err) {
-    console.log("error: ", err?.response?.data);
+    console.log("error: ", err);
   }
   dispatch({
     type: SET_USER_POSTS_LOADING,
@@ -243,7 +243,7 @@ export const updatePost = (updatePostData) => async (dispatch) => {
       payload: returnedUpdatedPost.post,
     });
   } catch (err) {
-    console.log("error: ", err?.response?.data);
+    console.log("error: ", err);
   }
   dispatch({
     type: SET_USER_POSTS_LOADING,
@@ -274,7 +274,7 @@ export const deletePost = (postId) => async (dispatch) => {
       payload: postId,
     });
   } catch (err) {
-    console.log("error: ", err?.response?.data);
+    console.log("error: ", err);
   }
   dispatch({
     type: SET_USER_POSTS_LOADING,

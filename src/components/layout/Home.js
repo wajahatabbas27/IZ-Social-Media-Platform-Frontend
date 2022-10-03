@@ -36,7 +36,7 @@ const Home = ({
     // Calling the data of the user here as it is login
     // Calling the userdata here to show in profile
     //=====================================================
-    if (!user) {
+    if (!user && auth) {
       getUser();
     } else {
       if (user && !userPosts) {

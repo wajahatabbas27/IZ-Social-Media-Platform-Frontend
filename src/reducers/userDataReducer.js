@@ -38,7 +38,7 @@ const userDataReducer = (state = initialState, action) => {
     case LOGIN_USER_AND_GET_TOKEN:
       return {
         ...state,
-        auth: action.payload,
+        auth: true,
         authLoading: false,
       };
     case GET_USER_DATA:

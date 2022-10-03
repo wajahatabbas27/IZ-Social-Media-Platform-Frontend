@@ -231,6 +231,12 @@
 
 - Home component will not go directly to the pages profile , as we are fetching the data api so it must be a async request therefore here we will be needing the loading and there we are showing the Spinner component here. 
 
+- bug tha getuser call horha tha aur error arha tha hamre pass.
+
+- Error aega agr to hm wo bhi krskte hain 
+  1- state bnegi aik error ki
+  2- dispatch call hoga aur update kreinge state ko
+  3- jhn jhn use krni hogi error pages mein whn state call krleinge aur alert call kradeinge!
 
 - 1- getUser in profile page.
 - 2- getUserPosts in timeline and apply CRUD.
