@@ -1,5 +1,11 @@
 # IZ Social Media App Frontend using React
 
+# Deployment links
+
+- Heroku deployment:  https://iz-social-app-frontend.herokuapp.com/
+
+- Netlify deployment: https://iz-social-app.netlify.app/
+
 - We have created the backend apis using the node, here we will be creating the frontend and integrating the apis using redux state management.
 
 - Creating structure for the application all the folders, that will be common like layout,auth and etc.
@@ -250,5 +256,5 @@
 
 - 1-connect github
 - 2-auto deploy enabling
-- 3-buildpack url for craete-react-app  :  https://github.com/mars/create-react-app-buildpack
+- 3-buildpack can be nodejs 
 - 4-deploy
